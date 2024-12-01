@@ -1,6 +1,5 @@
-﻿
-using ContactListApp.Services;
+﻿using Presentation.Console.MainApp.Services;
 
-var dialogs = new MenuDialogs();
+var contactService = new MenuDialogs();
 
-dialogs.MainMenu();
+contactService.Show();
