@@ -1,5 +1,6 @@
 ﻿using Presentation.Console.MainApp.Services;
 
-var contactService = new MenuDialogs();
+var menuService = new MenuService();
 
-contactService.Show();
+
+menuService.Show();

@@ -6,9 +6,9 @@ using System;
 
 
 
-public class MenuDialogs : IMenuDialogs
+public class MenuService : IMenuService
 {
-    private readonly ContactService _contactService = new ContactService();
+    private readonly ContactService _contactService = new();
     public void Show()
     {
         while (true)
@@ -17,24 +17,20 @@ public class MenuDialogs : IMenuDialogs
         }
     }
 
-
-
     private void MainMenu()
     {
         Console.Clear();
+        Console.WriteLine("-----------MENU----------");
         Console.WriteLine($"{"1.",-5} Create User");
         Console.WriteLine($"{"2.",-5} View Users");
         Console.WriteLine($"{"Q.",-5} Quit");
         Console.WriteLine("-------------------------");
-        Console.Write("Choose your menu option: ");
+        Console.Write("Choose your option: ");
         var option = Console.ReadLine();
 
 
-        switch (option.ToLower())
+        switch (option!.ToLower())
         {
-            case "q":
-                QuitOption();
-                break;
 
             case "1":
                 CreateOption();
@@ -44,18 +40,19 @@ public class MenuDialogs : IMenuDialogs
                 ViewOption();
                 break;
 
+            case "q":
+                QuitOption();
+                break;
+
             default:
                 InvalidOption();
-                break; // Add break statement to avoid falling through
+                break;
         }
     }
 
 
-
-
     private void CreateOption()
     {
-
         ContactRegistrationForm contactRegistrationForm = ContactFactory.Create();
         
         Console.Clear();
@@ -99,18 +96,18 @@ public class MenuDialogs : IMenuDialogs
         var contacts = _contactService.GetAll();
 
         Console.Clear();
-        Console.WriteLine("View");
+        Console.WriteLine("----------USERS----------");
 
         foreach (var contact in contacts)
         {
-            Console.WriteLine($"{"Id:", -10}{contact.Id}");
-            Console.WriteLine($"{"First Name:", -10}{ contact.FirstName}");
-            Console.WriteLine($"{"Last Name:",-10}{contact.LastName}");
-            Console.WriteLine($"{"Email:",-10}{contact.Email}");
-            Console.WriteLine($"{"Phone Number:",-10}{contact.PhoneNumber}");
-            Console.WriteLine($"{"Street Address:",-10}{contact.StreetAddress}");
-            Console.WriteLine($"{"Postal Code:",-10}{contact.PostalCode}");
-            Console.WriteLine($"{"City:",-10}{contact.City}");
+            Console.WriteLine($"{"Id:", -18}{contact.Id}");
+            Console.WriteLine($"{"First Name:", -18}{ contact.FirstName}");
+            Console.WriteLine($"{"Last Name:",-18}{contact.LastName}");
+            Console.WriteLine($"{"Email:",-18}{contact.Email}");
+            Console.WriteLine($"{"Phone Number:",-18}{contact.PhoneNumber}");
+            Console.WriteLine($"{"Street Address:",-18}{contact.StreetAddress}");
+            Console.WriteLine($"{"Postal Code:",-18}{contact.PostalCode}");
+            Console.WriteLine($"{"City:",-18}{contact.City}");
             Console.WriteLine("-------------------------");
         }
 
@@ -132,7 +129,7 @@ public class MenuDialogs : IMenuDialogs
     private void InvalidOption()
     {
         Console.Clear();
-        Console.WriteLine("Invalid option. Please try again.");
+        Console.WriteLine("Invalid option. Press any key to go back.");
         Console.ReadKey();
     }
 
@@ -142,5 +139,6 @@ public class MenuDialogs : IMenuDialogs
         Console.WriteLine(message);
         Console.ReadKey();
     }
+
 }
 

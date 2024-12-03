@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Console.MainApp.Services
 {
-    public interface IMenuDialogs
+    public interface IMenuService
     {
     }
 }
