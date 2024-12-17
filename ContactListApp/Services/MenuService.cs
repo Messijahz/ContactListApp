@@ -1,8 +1,13 @@
-﻿namespace Presentation.Console.MainApp.Services;
-
+﻿using System.ComponentModel.DataAnnotations;
 using Presentation.Console.MainApp.Factories;
 using Presentation.Console.MainApp.Models;
+
+namespace Presentation.Console.MainApp.Services;
 using System;
+
+
+
+
 
 
 
@@ -53,30 +58,17 @@ public class MenuService : IMenuService
 
     private void CreateOption()
     {
-        ContactRegistrationForm contactRegistrationForm = ContactFactory.Create();
-        
         Console.Clear();
 
-        Console.Write("Enter your first name: ");
-        contactRegistrationForm.FirstName = Console.ReadLine()!;
+        var contactRegistrationForm = ContactFactory.Create();
 
-        Console.Write("Enter your last name: ");
-        contactRegistrationForm.LastName = Console.ReadLine()!;
-
-        Console.Write("Enter your email: ");
-        contactRegistrationForm.Email = Console.ReadLine()!;
-
-        Console.Write("Enter your phone number: ");
-        contactRegistrationForm.PhoneNumber = Console.ReadLine()!;
-
-        Console.Write("Enter your street address: ");
-        contactRegistrationForm.StreetAddress = Console.ReadLine()!;
-
-        Console.Write("Enter your postal code: ");
-        contactRegistrationForm.PostalCode = Console.ReadLine()!;
-
-        Console.Write("Enter your city: ");
-        contactRegistrationForm.City = Console.ReadLine()!;
+        contactRegistrationForm.FirstName = PromptAndValidate("Enter your first name: ", nameof(contactRegistrationForm.FirstName));
+        contactRegistrationForm.LastName = PromptAndValidate("Enter your last name: ", nameof(contactRegistrationForm.LastName));
+        contactRegistrationForm.Email = PromptAndValidate("Enter your email: ", nameof(contactRegistrationForm.Email));
+        contactRegistrationForm.PhoneNumber = PromptAndValidate("Enter your phone number: ", nameof(contactRegistrationForm.PhoneNumber));
+        contactRegistrationForm.StreetAddress = PromptAndValidate("Enter your street address: ", nameof(contactRegistrationForm.StreetAddress));
+        contactRegistrationForm.PostalCode = PromptAndValidate("Enter your postal code: ", nameof(contactRegistrationForm.PostalCode));
+        contactRegistrationForm.City = PromptAndValidate("Enter your city: ", nameof(contactRegistrationForm.City));
 
         var result = _contactService.Create(contactRegistrationForm);
 
@@ -132,5 +124,33 @@ public class MenuService : IMenuService
         Console.ReadKey();
     }
 
-}
 
+    public string PromptAndValidate(string prompt, string propertyName)
+    {
+
+        var form = new ContactRegistrationForm();
+
+        while (true)
+        {
+            Console.WriteLine();
+            Console.Write(prompt);
+            var input = Console.ReadLine() ?? string.Empty;
+
+            var results = new List<ValidationResult>();
+
+            var property = form.GetType().GetProperty(propertyName);
+            property?.SetValue(form, input);
+
+            var context = new ValidationContext(form) { MemberName = propertyName };
+
+            if (Validator.TryValidateProperty(input, context, results))
+            {
+                return input;
+            }
+
+            Console.WriteLine($"{results[0].ErrorMessage}. Please try again.");
+
+        }
+
+    }
+}

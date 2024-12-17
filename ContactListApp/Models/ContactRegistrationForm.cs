@@ -18,7 +18,7 @@ namespace Presentation.Console.MainApp.Models
         public string Email { get; set; } = null!;
 
         [Required(ErrorMessage = "Phone number is required.")]
-        [RegularExpression(@"^(?:\+?\d{1,3})?(([-.\s()]?\d{2,4}){2,3}|\d{7,15})$", ErrorMessage = "Phone number must contain at least 2 characters.")] 
+        [RegularExpression(@"^(?:\+?\d{1,3})?(([-.\s()]?\d{2,4}){2,3}|\d{7,15})$", ErrorMessage = "Phone number must be a valid phone number.")] 
         public string PhoneNumber { get; set; } = null!;
 
         [Required(ErrorMessage = "Street address is required.")]
@@ -26,11 +26,11 @@ namespace Presentation.Console.MainApp.Models
         public string StreetAddress { get; set; } = null!;
 
         [Required(ErrorMessage = "Postal code is required.")]
-        [MinLength(2, ErrorMessage = "Postal code must contain at least 2 characters.")]
+        [MinLength(3, ErrorMessage = "Postal code must contain at least 3 characters.")]
         public string PostalCode { get; set; } = null!;
 
         [Required(ErrorMessage = "City is required.")]
-        [MinLength(2, ErrorMessage = "City must contain at least 1 characters.")]
+        [MinLength(2, ErrorMessage = "City must contain at least 2 characters.")]
         public string City { get; set; } = null!;
     }
 }
