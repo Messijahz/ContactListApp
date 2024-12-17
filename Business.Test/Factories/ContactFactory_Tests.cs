@@ -15,8 +15,7 @@ public class ContactFactory_Tests
         // Arrange & Act
         var result = ContactFactory.Create();
 
-
-
+        // Assert
         Assert.NotNull(result);
         Assert.IsType<ContactRegistrationForm>(result);
     }

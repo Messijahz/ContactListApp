@@ -7,6 +7,9 @@ public class IdGenerator_Tests
     [Fact]
     public void GenerateUniqueId_ShouldReturnGuidAsString()
     {
+        //Arrange
+
+
         // Act
         var result = UniqueIdentifierGenerator.GenerateUniqueId();
 
@@ -19,12 +22,15 @@ public class IdGenerator_Tests
     [Fact]
     public void GenerateUniqueId_ShouldReturnUniqueValues()
     {
+        // Arrange
+
+
         // Act
-        var result1 = UniqueIdentifierGenerator.GenerateUniqueId();
-        var result2 = UniqueIdentifierGenerator.GenerateUniqueId();
+        var result_1 = UniqueIdentifierGenerator.GenerateUniqueId();
+        var result_2 = UniqueIdentifierGenerator.GenerateUniqueId();
 
         // Assert
-        Assert.NotEqual(result1, result2);
+        Assert.NotEqual(result_1, result_2);
     }
 }
 

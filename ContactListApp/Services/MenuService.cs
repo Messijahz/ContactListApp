@@ -21,8 +21,8 @@ public class MenuService : IMenuService
     {
         Console.Clear();
         Console.WriteLine("-----------MENU----------");
-        Console.WriteLine($"{"1.",-5} Create User");
-        Console.WriteLine($"{"2.",-5} View Users");
+        Console.WriteLine($"{"1.",-5} Create Contact");
+        Console.WriteLine($"{"2.",-5} View Contact");
         Console.WriteLine($"{"Q.",-5} Quit");
         Console.WriteLine("-------------------------");
         Console.Write("Choose your option: ");
@@ -69,7 +69,7 @@ public class MenuService : IMenuService
         Console.Write("Enter your phone number: ");
         contactRegistrationForm.PhoneNumber = Console.ReadLine()!;
 
-        Console.Write("Enter your street adress: ");
+        Console.Write("Enter your street address: ");
         contactRegistrationForm.StreetAddress = Console.ReadLine()!;
 
         Console.Write("Enter your postal code: ");
@@ -78,17 +78,9 @@ public class MenuService : IMenuService
         Console.Write("Enter your city: ");
         contactRegistrationForm.City = Console.ReadLine()!;
 
-        bool result = _contactService.Create(contactRegistrationForm);
+        var result = _contactService.Create(contactRegistrationForm);
 
-        if (result)
-        {
-            OutputMessage("Contact created successfully!");
-        }
-        else
-        {
-            OutputMessage("Contact creation failed!");
-        }
-
+        OutputMessage(result ? "Contact created successfully!" : "Contact creation failed!");
     }
 
     private void ViewOption()
@@ -96,7 +88,7 @@ public class MenuService : IMenuService
         var contacts = _contactService.GetAll();
 
         Console.Clear();
-        Console.WriteLine("----------USERS----------");
+        Console.WriteLine("---------CONTACTS---------");
 
         foreach (var contact in contacts)
         {
