@@ -1,17 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ContactListApp.Business.Factories;
-using ContactListApp.Business.Services;
 using ContactListApp.Business.Models;
-
+using ContactListApp.Business.Interfaces;
 
 namespace Presentation.Console.MainApp.Services;
+
+
 using System;
+
 
 
 
 public class MenuService : IMenuService
 {
-    private readonly ContactService _contactService = new();
+    private readonly IContactService _contactService;
+
+    public MenuService(IContactService contactService)
+    {
+        _contactService = contactService;
+    }
+
     public void Show()
     {
         while (true)

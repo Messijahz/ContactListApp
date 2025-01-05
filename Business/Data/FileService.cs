@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
 using ContactListApp.Business.Models;
+using ContactListApp.Business.Interfaces;
 
 namespace ContactListApp.Business.Data;
 
-public class FileService
+public class FileService : IFileService
 {
     private readonly string _directoryPath;
     private readonly string _filePath;
@@ -29,7 +30,7 @@ public class FileService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex.Message);
+            Debug.WriteLine($"Error saving file: {ex.Message}");
         }
     }
 
@@ -39,16 +40,16 @@ public class FileService
         try
         {
             if (!File.Exists(_filePath))
-                return [];
+                return new List<ContactEntity>();
 
             var json = File.ReadAllText(_filePath);
             var list = JsonSerializer.Deserialize<List<ContactEntity>>(json, _jsonSerializerOptions);
-            return list ?? [];
+            return list ?? new List<ContactEntity>();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex.Message);
-            return [];
+            Debug.WriteLine($"Error loading file: {ex.Message}");
+            return new List<ContactEntity>();
         }
     }
 }

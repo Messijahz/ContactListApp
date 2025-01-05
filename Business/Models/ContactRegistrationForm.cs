@@ -14,7 +14,7 @@ public class ContactRegistrationForm
         public string LastName { get; set; } = null!;
 
         [Required(ErrorMessage = "Email is required.")]
-        [RegularExpression(@"^[^@\s]+@[^@/s]+\.[^@\s]{2,}$", ErrorMessage = "Email must be in a valid format (eg: username@domain.com).")] 
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]{2,}$", ErrorMessage = "Email must be in a valid format (eg: username@domain.com).")] 
         public string Email { get; set; } = null!;
 
         [Required(ErrorMessage = "Phone number is required.")]
