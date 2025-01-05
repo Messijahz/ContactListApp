@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Presentation.Console.MainApp.Factories;
-using Presentation.Console.MainApp.Models;
+using ContactListApp.Business.Factories;
+using ContactListApp.Business.Services;
+using ContactListApp.Business.Models;
+
 
 namespace Presentation.Console.MainApp.Services;
 using System;
-
-
-
-
 
 
 

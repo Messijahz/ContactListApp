@@ -1,8 +1,8 @@
-﻿using Presentation.Console.MainApp.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text.Json;
+using ContactListApp.Business.Models;
 
-namespace Presentation.Console.MainApp.Services;
+namespace ContactListApp.Business.Data;
 
 public class FileService
 {

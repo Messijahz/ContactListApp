@@ -1,6 +1,5 @@
-﻿
-using Presentation.Console.MainApp.Factories;
-using Presentation.Console.MainApp.Models;
+﻿using ContactListApp.Business.Factories;
+using ContactListApp.Business.Models;
 using Xunit;
 
 namespace Business.Test.Factories;

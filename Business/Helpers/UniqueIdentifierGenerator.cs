@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Presentation.Console.MainApp.Helpers;
+namespace ContactListApp.Business.Helpers;
 
 public static class UniqueIdentifierGenerator
 {

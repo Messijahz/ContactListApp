@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Presentation.Console.MainApp.Models
-{
-    public class ContactRegistrationForm
+namespace ContactListApp.Business.Models;
+
+public class ContactRegistrationForm
     {
         
         [Required (ErrorMessage = "First name is required.")]
@@ -33,4 +33,3 @@ namespace Presentation.Console.MainApp.Models
         [MinLength(2, ErrorMessage = "City must contain at least 2 characters.")]
         public string City { get; set; } = null!;
     }
-}

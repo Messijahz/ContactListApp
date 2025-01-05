@@ -1,4 +1,4 @@
-﻿using Presentation.Console.MainApp.Helpers;
+﻿using ContactListApp.Business.Helpers;
 
 namespace Business.Test.Helpers;
 

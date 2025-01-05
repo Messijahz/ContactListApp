@@ -1,8 +1,8 @@
-﻿using Presentation.Console.MainApp.Helpers;
-using Presentation.Console.MainApp.Models;
+﻿using ContactListApp.Business.Models;
+using ContactListApp.Business.Helpers;
 
-namespace Presentation.Console.MainApp.Factories
-{
+namespace ContactListApp.Business.Factories;
+
     public static class ContactFactory
     {
         public static ContactRegistrationForm Create()
@@ -25,4 +25,4 @@ namespace Presentation.Console.MainApp.Factories
             };
         }
     }
-}
+

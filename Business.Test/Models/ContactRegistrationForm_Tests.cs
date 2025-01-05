@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Presentation.Console.MainApp.Models;
+using ContactListApp.Business.Models;
 using Xunit;
 
-namespace Business.Test.Models
-{
+namespace ContactListApp.Data;
+
     public class ContactRegistrationForm_Tests
     {
         private bool ValidateModel(object model, out List<ValidationResult> results)
@@ -135,4 +135,3 @@ namespace Business.Test.Models
         }
     }
 
-}

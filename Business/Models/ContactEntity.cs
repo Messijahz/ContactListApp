@@ -1,5 +1,5 @@
-﻿namespace Presentation.Console.MainApp.Models
-{
+﻿namespace ContactListApp.Business.Models;
+
     public class ContactEntity
     {   
         public string Id { get; set; } = null!;
@@ -11,4 +11,3 @@
         public string PostalCode { get; set; } = null!;
         public string City { get; set; } = null!;
     }
-}

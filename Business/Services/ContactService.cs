@@ -1,10 +1,11 @@
-﻿using Presentation.Console.MainApp.Factories;
-using Presentation.Console.MainApp.Models;
+﻿using ContactListApp.Business.Factories;
+using ContactListApp.Business.Data;
+using ContactListApp.Business.Models;
 using System.Diagnostics;
 
-namespace Presentation.Console.MainApp.Services;
+namespace ContactListApp.Business.Services;
 
-    public class ContactService
+public class ContactService
     {
         public List<ContactEntity> _contacts = [];
         public readonly FileService _fileService = new();
