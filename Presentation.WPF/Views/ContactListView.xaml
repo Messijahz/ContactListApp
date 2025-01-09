@@ -3,62 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Presentation.WPF.Views"
+             xmlns:local="clr-namespace:Presentation.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
-    
-    
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
-        <StackPanel>
 
-            <TextBlock Text="Contact List" FontSize="24" FontWeight="Bold"  Margin="10" HorizontalAlignment="Center" />
-            
-            
-            <ListView ItemsSource="{Binding Contacts}" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border  Margin="5" Background="White" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
 
-                                <Button Content="▼" 
-                                        Grid.Column="0" 
-                                        Width="30" 
-                                        Height="30"
-                                        Command="{Binding DataContext.ToggleExpandCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                        CommandParameter="{Binding}" />
 
-                                <StackPanel Grid.Column="1" Orientation="Vertical">
-                                    <TextBlock Text="{Binding FirstName}" FontSize="16" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Email}" FontSize="14" Foreground="Gray" />
-                                </StackPanel>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="pack://application:,,,/Resources/empty.png" Width="150" Height="150" />
+            <TextBlock Text="No contacts found" FontSize="16" FontWeight="SemiBold" Foreground="Gray" Visibility="Hidden">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Contacts.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
 
-                                <Button Content="✎"
-                                        Grid.Column="2"
-                                        Width="30"
-                                        Height="30"
-                                        Command="{Binding DataContext.EditContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                        CommandParameter="{Binding}" />
 
-                                <Button Content="✖"
-                                        Grid.Column="3"
-                                        Width="30"
-                                        Height="30"
-                                        Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                        CommandParameter="{Binding}" />
-                            
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <ListView ItemsSource="{Binding Contacts}" Background="Transparent"
+                  Visibility="Visible">
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Contacts.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Style>
+        </ListView>
+        
+        
 
-        </StackPanel>        
-    </ScrollViewer>
-    
+        <Button Content="Add Contact"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="10 30"
+                Width="150"
+                Height="40"
+                Click="AddContactButton_Click" />
+
+    </Grid>
+
 </UserControl>

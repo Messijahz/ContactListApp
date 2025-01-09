@@ -20,5 +20,7 @@
             </Grid>
         </Border>
 
+        <ContentControl Margin="0 40 0 0" Content="{Binding CurrentView}" />
+
     </Grid>
 </Window>

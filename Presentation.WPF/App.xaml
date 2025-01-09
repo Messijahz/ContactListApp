@@ -1,9 +1,20 @@
 ﻿<Application x:Class="Presentation.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:view="clr-namespace:Presentation.WPF.Views"
+             xmlns:vm="clr-namespace:Presentation.WPF.ViewModels"
              xmlns:local="clr-namespace:Presentation.WPF"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-         
+        
+        <DataTemplate DataType="{x:Type vm:ContactListViewModel}">
+            <view:ContactListView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:AddContactViewModel}">
+            <view:AddContactView />
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>
