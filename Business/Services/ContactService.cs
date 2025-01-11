@@ -22,7 +22,7 @@ public class ContactService : IContactService
         {
             _contacts = _fileService.LoadListFromFile();
 
-            if (_contacts.Any(c => c.Email.Equals(form.Email, StringComparison.OrdinalIgnoreCase)))
+            if (_contacts.Any(c => !string.IsNullOrWhiteSpace(c.Email) && c.Email.Equals(form.Email, StringComparison.OrdinalIgnoreCase)))
             {
                 Debug.WriteLine("A contact with this email already exists. Operation aborted.");
                 return false;

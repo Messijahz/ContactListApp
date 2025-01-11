@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows;
+using System.Diagnostics;
 
 
 namespace Presentation.WPF.ViewModels;
@@ -29,6 +30,15 @@ public class AddContactViewModel : INotifyPropertyChanged
 
     private void SaveContact(object? parameter)
     {
+        Debug.WriteLine($"NewContact.FirstName: {NewContact.FirstName}");
+        Debug.WriteLine($"NewContact.LastName: {NewContact.LastName}");
+        Debug.WriteLine($"NewContact.Email: {NewContact.Email}");
+        Debug.WriteLine($"NewContact.PhoneNumber: {NewContact.PhoneNumber}");
+        Debug.WriteLine($"NewContact.StreetAddress: {NewContact.StreetAddress}");
+        Debug.WriteLine($"NewContact.PostalCode: {NewContact.PostalCode}");
+        Debug.WriteLine($"NewContact.City: {NewContact.City}");
+
+
         if (string.IsNullOrWhiteSpace(NewContact.FirstName) || 
             string.IsNullOrWhiteSpace(NewContact.LastName) ||
             string.IsNullOrWhiteSpace(NewContact.Email) ||
@@ -43,20 +53,35 @@ public class AddContactViewModel : INotifyPropertyChanged
 
         if (_contactService.Create(NewContact))
         {
-            if (System.Windows.Application.Current.MainWindow.DataContext is MainViewModel mainViewModel)
+            if (Application.Current.MainWindow.DataContext is MainViewModel mainViewModel)
             {
+                if (mainViewModel.CurrentView is ContactListViewModel contactListViewModel)
+                {
+                    contactListViewModel.Contacts.Add(
+                        new ContactEntity
+                        {
+                            FirstName = NewContact.FirstName,
+                            LastName = NewContact.LastName,
+                            Email = NewContact.Email,
+                            PhoneNumber = NewContact.PhoneNumber,
+                            StreetAddress = NewContact.StreetAddress,
+                            PostalCode = NewContact.PostalCode,
+                            City = NewContact.City
+                        });
+                }
+
                 mainViewModel.ShowContactList();
             }
         }
         else
         {
-            MessageBox.Show("Failed to save the contact. Please try again.");
+            MessageBox.Show("A contact with the same email address already exists.");
         }
     }   
 
     private void Cancel(object? parameter)
     {
-        if (System.Windows.Application.Current.MainWindow.DataContext is MainViewModel mainViewModel)
+        if (Application.Current.MainWindow.DataContext is MainViewModel mainViewModel)
         {
             mainViewModel.ShowContactList();
         }

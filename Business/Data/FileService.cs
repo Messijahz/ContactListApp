@@ -44,7 +44,8 @@ public class FileService : IFileService
 
             var json = File.ReadAllText(_filePath);
             var list = JsonSerializer.Deserialize<List<ContactEntity>>(json, _jsonSerializerOptions);
-            return list ?? new List<ContactEntity>();
+
+            return list?.Where(c => !string.IsNullOrWhiteSpace(c.Email)).ToList() ?? new List<ContactEntity>();
         }
         catch (Exception ex)
         {
