@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Presentation.WPF.Views.EditContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400">
+    
+    
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Edit Contact" FontSize="20" FontWeight="Bold" Margin="0 0 0 20" />
+
+            <TextBlock Text="First Name" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.FirstName, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Last Name" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.LastName, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Email Name" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.Email, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Phone Number" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Street Address" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.StreetAddress, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Postal Code" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="City" FontWeight="SemiBold" Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Contact.City, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 20 0 0">
+            <Button Content="Save" 
+                    Width="100" 
+                    Height="40" 
+                    Margin="10" 
+                    Command="{Binding SaveCommand}" />
+
+            <Button Content="Cancel"
+                    Width="100" 
+                    Height="40" 
+                    Margin="10" 
+                    Command="{Binding CancelCommand}"/>
+        </StackPanel>
+            
+    </Grid>
+</UserControl>

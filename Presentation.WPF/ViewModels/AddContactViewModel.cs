@@ -5,20 +5,35 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 
 namespace Presentation.WPF.ViewModels;
 
 public class AddContactViewModel : INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
     private readonly IContactService _contactService;
 
-    public ContactRegistrationForm NewContact { get; set; } = new();
+    private ContactRegistrationForm _newContact = new();
+    public ContactRegistrationForm NewContact
+    {
+        get => _newContact;
+        set
+        {
+            _newContact = value;
+            OnPropertyChanged(nameof(NewContact));
+        }
+    }
 
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     public AddContactViewModel(IContactService contactService)
     {

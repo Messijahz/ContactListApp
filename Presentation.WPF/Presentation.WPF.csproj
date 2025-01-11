@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Business.Test\Business.Test.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\ContactListApp\Presentation.Console.MainApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

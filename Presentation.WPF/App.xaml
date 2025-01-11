@@ -15,6 +15,10 @@
         <DataTemplate DataType="{x:Type vm:AddContactViewModel}">
             <view:AddContactView />
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type vm:EditContactViewModel}">
+            <view:EditContactView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

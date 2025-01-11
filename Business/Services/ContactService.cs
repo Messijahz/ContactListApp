@@ -69,5 +69,42 @@ public class ContactService : IContactService
             return false;
         }
     }
+
+    public bool UpdateContact(ContactEntity updatedContact)
+    {
+       var contact = _contacts.FirstOrDefault(c => c.Id == updatedContact.Id);
+        if (contact == null)
+        {
+            Debug.WriteLine("Contact not found.");
+            return false;
+        }
+
+        contact.FirstName = updatedContact.FirstName;
+        contact.LastName = updatedContact.LastName;
+        contact.Email = updatedContact.Email;
+        contact.PhoneNumber = updatedContact.PhoneNumber;
+        contact.StreetAddress = updatedContact.StreetAddress;
+        contact.PostalCode = updatedContact.PostalCode;
+        contact.City = updatedContact.City;
+      
+
+        _fileService.SaveListToFile(_contacts);
+        return true;
+    }
+
+    public bool DeleteContact(Guid contactId)
+    {
+        var contact = _contacts.FirstOrDefault(c => Guid.TryParse(c.Id, out Guid contactGuid) && contactGuid == contactId);
+
+        if (contact == null)
+        {
+            Debug.WriteLine("Contact not found.");
+            return false;
+        }
+
+        _contacts.Remove(contact);
+        _fileService.SaveListToFile(_contacts);
+        return true;
+    }
 }
 

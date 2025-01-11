@@ -31,10 +31,26 @@
         <ListView ItemsSource="{Binding Contacts}" Background="Transparent" VerticalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical" Margin="5">
-                        <TextBlock Text="{Binding FirstName}" FontWeight="Bold" Margin="0 0 10 0"/>
-                        <TextBlock Text="{Binding LastName}" FontWeight="Bold" Margin="0 0 10 0"/>
-                        <TextBlock Text="{Binding Email}" Foreground="Gray" FontSize="12"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
+
+                        <StackPanel Orientation="Vertical" Margin="0 0 10 0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FirstName}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding LastName}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Email}" Foreground="Gray" FontSize="12"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" VerticalAlignment="Center">
+                            <Button Content="✏️" Width="30" Height="30" Margin="10 0 0 0" 
+                                    VerticalAlignment="Center"
+                                    Command="{Binding DataContext.EditContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}" />
+                            <Button Content="❌" Width="30" Height="30" Margin="10 0 0 0"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}" />
+                        </StackPanel>
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
