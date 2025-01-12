@@ -3,55 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Presentation.WPF"
+             xmlns:local="clr-namespace:Presentation.WPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
 
-
-
-    <Grid>
-        <TextBlock Text="No contacts added yet..." FontSize="16" FontWeight="SemiBold" Foreground="Gray" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center">
+    <UserControl.Resources>
+        <local:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#E0E0E0" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="5" 
+                        BorderBrush="Gray" 
+                        BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Contacts.Count}" Value="0">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Contacts.Count}" Value="1">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFC0CB" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="BorderBrush" Value="#FF69B4" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="EditButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#E0E0E0" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="5" 
+                        BorderBrush="Gray" 
+                        BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFE0" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="BorderBrush" Value="#FFD700" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
 
 
-        <ListView ItemsSource="{Binding Contacts}" Background="Transparent" VerticalAlignment="Stretch">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="No contacts added yet..." FontSize="16" FontWeight="SemiBold" Foreground="Gray" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Visibility="{Binding Contacts.Count, Converter={StaticResource CountToVisibilityConverter}}" Margin="112,0,0,0" />
+
+
+
+
+        <ListView ItemsSource="{Binding Contacts}" Background="Transparent" Padding="0 0 0 120" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
+                    <Grid Margin="5" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Vertical" Margin="0 0 10 0" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding FirstName}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding LastName}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Email}" Foreground="Gray" FontSize="12"/>
+                        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0" VerticalAlignment="Center">
+                            <TextBlock>
+                                <Run Text="{Binding FirstName}" FontWeight="Bold" FontSize="14" />
+                                <Run Text="{Binding LastName}" FontWeight="Bold" FontSize="14" />
+                            </TextBlock>
+                            <TextBlock Text="{Binding Email}" Foreground="Gray" FontSize="12" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" VerticalAlignment="Center">
-                            <Button Content="✏️" Width="30" Height="30" Margin="10 0 0 0" 
-                                    VerticalAlignment="Center"
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <Button Grid.Column="0" Content="✏️" Style="{StaticResource PenButtonStyle}"
                                     Command="{Binding DataContext.EditContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}" />
-                            <Button Content="❌" Width="30" Height="30" Margin="10 0 0 0"
-                                    VerticalAlignment="Center"
+                            <Button Grid.Column="1" Content="❌" Style="{StaticResource CrossButtonStyle}"
+                                    VerticalAlignment="Center" Margin="5 0 0 0"
                                     Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}" />
                         </StackPanel>
-                        
-                    </StackPanel>
+                    </Grid>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -59,12 +123,13 @@
 
 
         <Button Content="Add Contact"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="10 30"
+                Margin="125,0,0,30"
                 Width="150"
                 Height="40"
-                Click="AddContactButton_Click" />
+                Click="AddContactButton_Click" 
+                Style="{StaticResource YellowButtonStyle}" />
 
     </Grid>
 

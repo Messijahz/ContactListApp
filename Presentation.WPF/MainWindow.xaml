@@ -10,13 +10,22 @@
         ResizeMode="NoResize"
         Background="White"
         Height="600" Width="400">
-    
-    
+
+
     <Grid>
         <Border Background="#333" Height="40" VerticalAlignment="Top" MouseDown="TopBar_MouseDown">
             <Grid>
-                <Label Content="Contact List" Foreground="White" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0" />
-                <Button Content="X" Background="Red" Foreground="White" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Click="CloseButton_Click" Margin="0 0 10 0"/>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="Resources/Images/logo.png" Height="30" Width="30" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Column="0"/>
+                <Label Content="Contact List" Foreground="#F3F4F6" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1" FontWeight="Bold" />
+                <Button Content="X" Background="Red" Foreground="White" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Click="CloseButton_Click" Margin="0,0,10,0" Grid.Column="2"/>
+                
             </Grid>
         </Border>
 

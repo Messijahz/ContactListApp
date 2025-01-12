@@ -1,4 +1,5 @@
 ﻿using ContactListApp.Business.Data;
+using ContactListApp.Business.Interfaces;
 using ContactListApp.Business.Models;
 using ContactListApp.Business.Services;
 using Presentation.WPF.ViewModels;
@@ -10,7 +11,7 @@ namespace Presentation.WPF.ViewModels;
 
 public class MainViewModel : INotifyPropertyChanged
 {
-    private readonly ContactService _contactService;
+    private readonly IContactService _contactService;
 
     private object _currentView = null!;
     public object CurrentView
@@ -23,12 +24,9 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    public MainViewModel()
+    public MainViewModel(IContactService contactService)
     {
-
-        var fileService = new FileService();
-        _contactService = new ContactService(fileService);
-
+        _contactService = contactService;
         CurrentView = new ContactListViewModel(_contactService);
     }
 

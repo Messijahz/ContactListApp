@@ -6,36 +6,50 @@
              xmlns:local="clr-namespace:Presentation.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
+    
+    
     <Grid Margin="20">
         <StackPanel>
             <TextBlock Text="Add New Contact" FontSize="20" FontWeight="Bold" Margin="0 0 0 20" />
 
 
-            <TextBlock Text="First Name" FontWeight="SemiBold" />
+            <TextBlock Text="First Name:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Last Name" FontWeight="SemiBold" />
+            <TextBlock Text="Last Name:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
             
-            <TextBlock Text="Email" FontWeight="SemiBold" />
+            <TextBlock Text="Email:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.Email, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
             
-            <TextBlock Text="Phone Number" FontWeight="SemiBold" />
+            <TextBlock Text="Phone Number:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
             
-            <TextBlock Text="Street Address" FontWeight="SemiBold" />
+            <TextBlock Text="Street Address:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.StreetAddress, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Postal Code" FontWeight="SemiBold" />
+            <TextBlock Text="Postal Code:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
             
-            <TextBlock Text="City" FontWeight="SemiBold" />
+            <TextBlock Text="City:" FontWeight="SemiBold" />
             <TextBox Text="{Binding NewContact.City, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button Content="Save" Width="100" Height="40" Margin="10" Command="{Binding SaveCommand}" />
-            <Button Content="Cancel" Width="100" Height="40" Margin="10" Command="{Binding CancelCommand}"/>
+            <Button Content="Save" 
+                    Width="100" 
+                    Height="40" 
+                    Margin="10" 
+                    Command="{Binding SaveCommand}" 
+                    Style="{StaticResource GreenButtonStyle}"/>
+            
+            <Button Content="Cancel" 
+                    Width="100" 
+                    Height="40" 
+                    Margin="10" 
+                    Command="{Binding CancelCommand}" 
+                    Style="{StaticResource RedButtonStyle}"/>
+            
         </StackPanel>
     </Grid>
 </UserControl>

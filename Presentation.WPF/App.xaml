@@ -3,11 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:view="clr-namespace:Presentation.WPF.Views"
              xmlns:vm="clr-namespace:Presentation.WPF.ViewModels"
-             xmlns:local="clr-namespace:Presentation.WPF"
-             StartupUri="MainWindow.xaml">
-    
+             xmlns:local="clr-namespace:Presentation.WPF">
+
+
     <Application.Resources>
-        
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Montserrat" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Montserrat" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#E0E0E0" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Padding" Value="10 5" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="10"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#CCCCCC" />
+                    <Setter Property="BorderBrush" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GreenButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#AEE1AE" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DFF5DF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="YellowButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#FFE680" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF4CC" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RedButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#FF9999" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFCCCB" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PenButtonStyle" TargetType="Button" BasedOn="{StaticResource YellowButtonStyle}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="5"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CrossButtonStyle" TargetType="Button" BasedOn="{StaticResource RedButtonStyle}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="5"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
         <DataTemplate DataType="{x:Type vm:ContactListViewModel}">
             <view:ContactListView />
         </DataTemplate>
@@ -19,6 +122,14 @@
         <DataTemplate DataType="{x:Type vm:EditContactViewModel}">
             <view:EditContactView />
         </DataTemplate>
+        
+        
+        
 
     </Application.Resources>
+
+
+        
+
+
 </Application>

@@ -10,6 +10,9 @@
 
   <ItemGroup>
     <None Remove="Resources\empty.png" />
+    <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\empty.png" />
+    <Resource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <Resource Include="Resources\Images\empty.png" />
+    <Resource Include="Resources\Images\logo.png" />
   </ItemGroup>
 
 </Project>

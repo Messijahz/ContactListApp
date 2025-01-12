@@ -12,40 +12,42 @@
         <StackPanel>
             <TextBlock Text="Edit Contact" FontSize="20" FontWeight="Bold" Margin="0 0 0 20" />
 
-            <TextBlock Text="First Name" FontWeight="SemiBold" />
-            <TextBox Text="{Binding Contact.FirstName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="First Name:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Last Name" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.LastName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Last Name:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Email Name" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.Email, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Email:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.Email, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Phone Number" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Phone Number:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15" />
 
-            <TextBlock Text="Street Address" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.StreetAddress, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Street Address:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.StreetAddress, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15"/>
 
-            <TextBlock Text="Postal Code" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Postal Code:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15"/>
 
-            <TextBlock Text="City" FontWeight="SemiBold" Margin="0 10 0 0"/>
-            <TextBox Text="{Binding Contact.City, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="City:" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Contact.City, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 15"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 20 0 0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Button Content="Save" 
                     Width="100" 
                     Height="40" 
                     Margin="10" 
-                    Command="{Binding SaveCommand}" />
+                    Command="{Binding SaveCommand}" 
+                    Style="{StaticResource GreenButtonStyle}" />
 
             <Button Content="Cancel"
                     Width="100" 
                     Height="40" 
                     Margin="10" 
-                    Command="{Binding CancelCommand}"/>
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource RedButtonStyle}" />
         </StackPanel>
             
     </Grid>

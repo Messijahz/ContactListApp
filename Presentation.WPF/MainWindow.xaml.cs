@@ -5,16 +5,13 @@ using System.Windows.Input;
 
 namespace Presentation.WPF;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(MainViewModel viewModel)
     {
         InitializeComponent();
 
-        DataContext = new MainViewModel();
+        DataContext = viewModel;
     }
 
     private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
